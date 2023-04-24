@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
+    id: { type: String },
     username: { type: String },
     firstName: { type: String },
     lastName: { type: String },
@@ -28,7 +29,7 @@ const userSchema = mongoose.Schema(
       street: { type: String },
       city: { type: String },
       state: { type: String },
-      zip: { type: String },
+      zipCode: { type: String },
     },
     shoppingCart: [
       {

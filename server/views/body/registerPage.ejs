@@ -1,0 +1,61 @@
+<form action="http://localhost:5200/register" method="POST" class="regUserForm">
+  <h1>registerUser</h1>
+  <label
+    >username
+    <input type="text" name="username" required />
+  </label>
+  <label
+    >First name
+    <input type="text" name="firstName" />
+  </label>
+  <label>
+    Last name
+    <input type="text" name="lastName" />
+  </label>
+  <label
+    >age
+    <input type="number" name="age" />
+  </label>
+  <label
+    >phone
+    <input type="text" name="phone" />
+  </label>
+  <label
+    >email
+    <input type="email" name="email" />
+  </label>
+  <label
+    >password
+    <input type="password" name="password" />
+  </label>
+  <label
+    >repeat password
+    <input type="password" name="confirmPassword" />
+  </label>
+  <label>
+    Shipping Address
+    <div>
+      <label
+        >number
+        <input type="text" name="shippingAddress.number" />
+      </label>
+      <label
+        >City
+        <input type="text" name="shippingAddress.city" />
+      </label>
+      <label
+        >State
+        <input type="text" name="shippingAddress.state" />
+      </label>
+
+      <label
+        >Zip Code
+        <input type="text" name="shippingAddress.zipCode" />
+      </label>
+    </div>
+
+    <button type="submit">SUBMIT</button>
+  </label>
+
+  <!-- username, firstName, lastName, age, phone, email, password, shippingAddress, billingAddress, homeAddress  -->
+</form>

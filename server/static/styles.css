@@ -1,0 +1,66 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+
+  background-color: darkcyan;
+  font-family: sans-serif;
+}
+
+.mainContainer {
+  height: 100svh;
+  padding: 1rem;
+
+  place-items: center;
+
+  display: grid;
+  grid-template-rows: 15% 80% 5%;
+}
+
+.regUserForm,
+.regUserForm div {
+  display: flex;
+  flex-direction: column;
+}
+
+.regUserForm div {
+  margin-left: 1.5rem;
+  font-size: 0.8rem;
+}
+
+nav {
+  display: flex;
+  margin: 0 auto;
+
+  align-items: center;
+}
+
+nav h2 {
+  font-size: 2.2rem;
+  letter-spacing: 0.2rem;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav li {
+  list-style-type: none;
+  margin-left: 1rem;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.75rem;
+}
