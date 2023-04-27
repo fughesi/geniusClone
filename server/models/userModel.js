@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema(
     lastName: { type: String },
     isActive: { type: Boolean },
     age: { type: Number },
+    iqPoints: { type: Number },
     email: { type: String },
     phone: { type: String },
     password: { type: String },
