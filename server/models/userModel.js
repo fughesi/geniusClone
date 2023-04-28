@@ -7,7 +7,7 @@ const userSchema = mongoose.Schema(
     firstName: { type: String },
     lastName: { type: String },
     isActive: { type: Boolean },
-    age: { type: Number },
+    age: { type: Number, min: 1, max: 110 },
     iqPoints: { type: Number },
     email: { type: String, lowercase: true, trim: true, unique: true, required: "email is required!" },
     phone: { type: String },

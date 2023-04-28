@@ -24,6 +24,23 @@ const getAllUsers = asyncHandler(async (req, res) => {
 
 // ====================================
 
+//DESC : get a single user from the db
+//ROUTE : GET /api/users/:id
+//ACCESS : public
+const getSingleUser = asyncHandler(async (req, res) => {
+  const result = await Users.find({ _id: req.params.id });
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
+    console.log("Unable to fetch user at this time");
+    res.status(500);
+    throw new Error("Unable to fetch user at this time");
+  }
+});
+
+// ====================================
+
 //DESC : create a new user in the db
 //ROUTE : POST /api/users/register
 //ACCESS : public
@@ -31,8 +48,8 @@ const createNewUser = asyncHandler(async (req, res) => {
   const { username, firstName, lastName, age, phone, email, password, shippingAddress, billingAddress, homeAddress } =
     req.body;
 
+  const emailUnavailable = await Users.findOne({ email: email.toLowerCase() }).exec();
   const usernameUnavailable = await Users.findOne({ username }).exec();
-  const emailUnavailable = await Users.findOne({ email }).exec();
 
   if (emailUnavailable) {
     res.status(400);
@@ -90,4 +107,4 @@ const createNewUser = asyncHandler(async (req, res) => {
   }
 });
 
-module.exports = { getAllUsers, createNewUser };
+module.exports = { getAllUsers, createNewUser, getSingleUser };
