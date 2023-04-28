@@ -1,11 +1,17 @@
 .mobileNav {
   display: grid;
-  grid-template-rows: 2rem calc(100svh - 2rem);
+  grid-template-rows: 2rem auto;
   grid-template-columns: 1fr;
 
   grid-template-areas:
     "a"
     "b";
+}
+
+.fullHeightContainer {
+  position: fixed;
+  inset: 0 0 0 0;
+  grid-template-rows: 2rem calc(100svh - 2rem);
 }
 
 .navMobileContainer {
@@ -51,18 +57,20 @@
 
 .navOpen div::after {
   transform: rotate(-90deg);
-  transform-origin: bottom left;
 }
 
-.navOpen {
-  /* transform-origin: 50px 50px; */
-  transform: rotate(135deg);
+.navOpen div {
+  transform: rotate(45deg);
 }
 
 .collapsableNavMenu {
   grid-area: b;
   justify-content: end;
   background-color: black;
+}
+
+.hideMobileNav {
+  display: none;
 }
 
 .mobileNavList {
@@ -74,4 +82,8 @@
   padding: 0.5rem 0 0.5rem 1.5rem;
   border-bottom: 1px solid white;
   color: white;
+}
+
+.geniusTitle {
+  font-weight: 700;
 }

@@ -2,16 +2,27 @@ const mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema(
   {
-    id: { type: String },
-    username: { type: String },
+    id: { type: String, trim: true },
+    username: { type: String, required: "username is required!" },
     firstName: { type: String },
     lastName: { type: String },
     isActive: { type: Boolean },
     age: { type: Number },
     iqPoints: { type: Number },
-    email: { type: String },
+    email: { type: String, lowercase: true, trim: true, unique: true, required: "email is required!" },
     phone: { type: String },
-    password: { type: String },
+    password: { type: String, min: 6, required: "password is required!" },
+    about: { type: String },
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: "Users" }],
+    stats: {
+      annotations: { type: Number, default: 0 },
+      questions: { type: Number, default: 0 },
+      answers: { type: Number, default: 0 },
+      suggestions: { type: Number, default: 0 },
+      transcriptions: { type: Number, default: 0 },
+      pyongs: { type: Number, default: 0 },
+    },
     homeAddress: {
       number: { type: String },
       street: { type: String },
@@ -27,6 +38,7 @@ const userSchema = mongoose.Schema(
       zipCode: { type: String },
     },
     billingAddress: {
+      number: { type: String },
       street: { type: String },
       city: { type: String },
       state: { type: String },
@@ -44,7 +56,7 @@ const userSchema = mongoose.Schema(
         quantity: { type: Number, default: 1 },
       },
     ],
-    createdAt: { type: Date, immutable: true, default: () => Date.now() },
+    createdAt: { type: Date, immutable: true, default: () => new Date() },
   },
   { timestamps: true }
 );

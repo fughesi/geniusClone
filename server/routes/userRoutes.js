@@ -5,7 +5,7 @@ const express = require("express");
 
 const router = express.Router();
 
-// api/users
+// USER ROUTES
 router.route("/").get(getAllUsers);
 router.route("/register").post(validation(UserValidation), createNewUser);
 

@@ -74,6 +74,39 @@ const users = [
     shoppingCart: [],
     savedForLater: [],
   }),
+  new Users({
+    username: "Danny123",
+    firstName: "Danny",
+    lastName: "mazinsky",
+    isActive: true,
+    age: 45,
+    email: "mooch@gmail.com",
+    phone: "2003635425",
+    password: "123456",
+    homeAddress: {
+      number: "12",
+      street: "oak st",
+      city: "boston",
+      state: "ma",
+      zipCode: "90210",
+    },
+    shippingAddress: {
+      number: "12",
+      street: "oak st",
+      city: "boston",
+      state: "ma",
+      zipCode: "90210",
+    },
+    billingAddress: {
+      number: "12",
+      street: "oak st",
+      city: "boston",
+      state: "ma",
+      zipCode: "90210",
+    },
+    shoppingCart: [],
+    savedForLater: [],
+  }),
 ];
 
 seeder(users);

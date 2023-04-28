@@ -1,9 +1,12 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const dbConnect = require("./config/dbConnect");
+const path = require("path");
 const cors = require("cors");
 
+const songRoutes = require("./routes/songRoutes");
 const userRoutes = require("./routes/userRoutes");
+const newsRoutes = require("./routes/newsRoutes");
 const serverRoutes = require("./routes/serverRoutes");
 const errorHandler = require("./middleware/errorHandler");
 
@@ -20,6 +23,8 @@ app.use(express.urlencoded({ extended: false }));
 
 // ROUTES LIST
 app.use("/api/users", userRoutes);
+app.use("/api/news", newsRoutes);
+app.use("/api/songs", songRoutes);
 app.use("/", serverRoutes);
 app.get("*", (req, res) => {
   res.send("404");

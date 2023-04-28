@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import NavMobile from "../../components/nav/navMobile.jsx";
+import NavMobile from "../../components/nav/NavMobile.jsx";
 
 import "./PrimaryLayout.css";
 

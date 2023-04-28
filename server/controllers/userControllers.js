@@ -46,7 +46,7 @@ const createNewUser = asyncHandler(async (req, res) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
-  const newUser = {
+  const newUser = new Users({
     id: v4(),
     username,
     firstName: capitalizeFirstLetter(firstName),
@@ -65,30 +65,29 @@ const createNewUser = asyncHandler(async (req, res) => {
     },
     shippingAddress: {
       number: shippingAddress?.number,
-      city: shippingAddress?.city,
+      city: capitalizeFirstLetter(shippingAddress?.city),
       state: shippingAddress?.state.toUpperCase(),
       zipCode: shippingAddress?.zipCode,
     },
     billingAddress: {
       number: billingAddress?.number,
-      city: billingAddress?.city,
+      city: capitalizeFirstLetter(billingAddress?.city),
       state: billingAddress?.state.toUpperCase(),
       zipCode: billingAddress?.zipCode,
     },
     shoppingCart: [],
     savedForLater: [],
-    createdAt: () => Date.now(),
-  };
+  });
 
-  res.send(newUser);
-  //   const result = await Users.create(newUser);
+  const result = await newUser.save();
 
-  //   if (result) {
-  //     res.status(200).json(result);
-  //   } else {
-  //     (err) => console.log(err);
-  //     throw new Error("this is the shit");
-  //   }
+  if (result) {
+    console.log("New user created");
+    res.status(201).json({ message: `Welcome aboard, ${result.username || "new user"}` });
+  } else {
+    res.status(400);
+    throw new Error("Unable to create new user profil at this time");
+  }
 });
 
 module.exports = { getAllUsers, createNewUser };

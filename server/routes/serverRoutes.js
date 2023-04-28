@@ -3,7 +3,7 @@ const { homepage, registerUser, registerPage } = require("../controllers/serverC
 
 const router = express.Router();
 
-// server routes
+// SERVER ROUTES
 router.route("/").get(homepage);
 router.route("/register").get(registerPage).post(registerUser);
 

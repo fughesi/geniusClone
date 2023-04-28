@@ -9,7 +9,7 @@ export default function NavMobile() {
   const navOpen = useSelector((state) => state.theme.navOpen);
 
   return (
-    <nav className="mobileNav">
+    <nav className={`mobileNav ${navOpen ? "fullHeightContainer" : ""}`}>
       <section className="navMobileContainer">
         <div
           className={`hamburger ${navOpen ? "navOpen" : ""}`}
@@ -19,11 +19,13 @@ export default function NavMobile() {
         >
           <div></div>
         </div>
-        <div className="geniusTitle">GENIUS</div>
+        <div className="geniusTitle">
+          <NavLink to="/">GENIUS</NavLink>
+        </div>
         <div className="registrationPrompt">REGISTER</div>
       </section>
 
-      <section className="collapsableNavMenu">
+      <section className={`collapsableNavMenu ${navOpen ? "" : "hideMobileNav"}`}>
         <ul className="mobileNavList">
           <NavLink to="/">
             <li>FEATURED</li>
