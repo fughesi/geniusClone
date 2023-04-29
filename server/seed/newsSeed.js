@@ -2,7 +2,6 @@ const dbConnect = require("../config/dbConnect");
 const seeder = require("../config/dbSeed");
 const News = require("../models/newsModel");
 const { v4 } = require("uuid");
-const path = require("path");
 
 dbConnect;
 
@@ -15,6 +14,7 @@ const news = [
     author: "644a88b5849a447b4d2c56da",
     date: Date.now().toString(),
     photo: "http://localhost:5200/images/cheetaRun.jpg",
+    photoAlt: "deer chasing a cheetah",
     categories: ["News"],
     referencedArtists: ["THUNDERCAT", "TAME IMPALA"],
     referencedSongs: ["NO MORE LIES"],
@@ -28,6 +28,7 @@ const news = [
     author: "644a88b5849a447b4d2c56da",
     date: Date.now().toString(),
     photo: "http://localhost:5200/images/fml.jpg",
+    photoAlt: "cover of FML album",
     categories: ["News"],
     referencedArtists: ["SEVENTEEN (세븐틴)"],
     referencedSongs: ["F*CK MY LIFE"],

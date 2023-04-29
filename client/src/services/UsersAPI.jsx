@@ -7,7 +7,7 @@ export const usersApi = createApi({
     prepareHeaders: (headers, { getState }) => {
       const token = getState().auth.token;
       if (token) {
-        headers.set("authorization", `Bearer ${token}`);
+        headers.set("authorization" || "Authorization", `Bearer ${token}`);
       }
       return headers;
     },
@@ -17,6 +17,13 @@ export const usersApi = createApi({
     getAllUsers: builder.query({
       query: () => ({
         url: "/",
+        method: "GET",
+      }),
+      providesTags: ["User"],
+    }),
+    getSingleUser: builder.query({
+      query: (id) => ({
+        url: "/:id",
         method: "GET",
       }),
       providesTags: ["User"],
@@ -32,4 +39,4 @@ export const usersApi = createApi({
   }),
 });
 
-export const { useGetAllUsersQuery, useCreateNewUserMutation } = usersApi;
+export const { useGetAllUsersQuery, useCreateNewUserMutation, useGetSingleUserQuery } = usersApi;

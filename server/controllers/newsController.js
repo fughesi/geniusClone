@@ -10,7 +10,14 @@ const News = require("../models/newsModel");
 //ACCESS : public
 const getAllNewsArticles = asyncHandler(async (req, res) => {
   const result = await News.find();
-  res.status(200).send(result);
+
+  if (result) {
+    console.log("News articles sent");
+    res.status(200).json(result);
+  } else {
+    res.status(500);
+    throw new Error("Unable to get news articles at this time");
+  }
 });
 
 //==============================================

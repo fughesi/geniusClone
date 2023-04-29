@@ -103,7 +103,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     res.status(201).json({ message: `Welcome aboard, ${result.username || "new user"}` });
   } else {
     res.status(400);
-    throw new Error("Unable to create new user profil at this time");
+    throw new Error("Unable to create new user profile at this time");
   }
 });
 

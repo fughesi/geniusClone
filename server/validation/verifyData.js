@@ -54,6 +54,7 @@ const NewsValidation = Joi.object({
   author: Joi.string().required(),
   date: Joi.string().required(),
   photo: Joi.string(),
+  photoAlt: Joi.string(),
   categories: Joi.array(),
   referencedArtists: Joi.array(),
   referencedSongs: Joi.array(),

@@ -13,6 +13,7 @@ const newsSchema = mongoose.Schema(
     },
     date: { type: String, required: true },
     photo: { type: String },
+    photoAlt: { type: String },
     categories: [],
     referencedArtists: { type: Array },
     referencedSongs: { type: Array },

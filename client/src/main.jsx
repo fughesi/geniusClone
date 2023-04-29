@@ -10,13 +10,18 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import themeReducer from "./features/themeSlice.jsx";
 //SERVICES
 import { usersApi } from "./services/UsersAPI.jsx";
+import { newsApi } from "./services/NewsAPI.jsx";
+import { songsApi } from "./services/SongAPI.jsx";
 
 const store = configureStore({
   reducer: {
     theme: themeReducer,
     [usersApi.reducerPath]: usersApi.reducer,
+    [newsApi.reducerPath]: newsApi.reducer,
+    [songsApi.reducerPath]: songsApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(usersApi.middleware),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(usersApi.middleware, newsApi.middleware, songsApi.middleware),
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
