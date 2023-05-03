@@ -1,4 +1,4 @@
-<form action="http://localhost:5200/register" method="POST" class="regUserForm">
+<form class="regUserForm">
   <h1>registerUser</h1>
   <label
     >username
@@ -61,10 +61,10 @@
 <script>
   const form = document.querySelector("form");
 
-  form.addEventListener("submit", (e) => {
+  form.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const data = {
+    const formData = {
       username: form.username.value,
       firstName: form.firstName.value,
       lastName: form.lastName.value,
@@ -72,13 +72,27 @@
       phone: form.phone.value,
       email: form.email.value,
       password: form.password.value,
-      // shippingAddress: form.shippingAddress.value,
-      // shippingAddressNumber: form.shippingAddress.number.value,
-      // shippingAddressCity: form.shippingAddress[city].value,
-      // shippingAddressState: form.shippingAddress[state].value,
-      // shippingAddressZipCode: form.shippingAddress[zipCode].value,
+      confirmPassword: form.confirmPassword.value,
+      shippingAddress: {
+        number: form.shippingAddress.number.value,
+        city: form.shippingAddress.city.value,
+        state: form.shippingAddress.state.value,
+        zipCode: form.shippingAddress.zipCode.value,
+      },
     };
 
-    console.log(data);
+    console.log(formData);
+    try {
+      const res = await fetch("/api/users/register", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const response = await res.json();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   });
 </script>

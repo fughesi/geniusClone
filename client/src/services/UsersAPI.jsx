@@ -22,7 +22,7 @@ export const usersApi = createApi({
       providesTags: ["User"],
     }),
     getSingleUser: builder.query({
-      query: (id) => ({
+      query: () => ({
         url: "/:id",
         method: "GET",
       }),

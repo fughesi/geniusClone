@@ -1,8 +1,9 @@
 const { v4 } = require("uuid");
-const Users = require("../models/userModel");
 const bcrypt = require("bcrypt");
+const roles = require("../utils/roles");
+const Users = require("../models/userModel");
+const { createToken, maxAge } = require("../utils/token");
 const asyncHandler = require("express-async-handler");
-
 const capitalizeFirstLetter = require("../utils/capitalize");
 
 // ====================================
@@ -98,9 +99,16 @@ const createNewUser = asyncHandler(async (req, res) => {
 
   const result = await newUser.save();
 
+  const token = createToken({
+    id: newUser.id,
+    username: newUser.username,
+  });
+
+  console.log(token);
   if (result) {
     res
       .status(201)
+      .cookie("jwt", token, { httpOnly: true, maxAge: maxAge * 1000 })
       .cookie("newUser", true, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 })
       .json({ message: `Welcome aboard, ${result.username || "new user"}` });
   } else {

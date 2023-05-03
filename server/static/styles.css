@@ -15,11 +15,18 @@ body {
 .mainContainer {
   height: 100svh;
   padding: 1rem;
+  grid-area: body;
 
   place-items: center;
 
   display: grid;
   grid-template-rows: 15% 80% 5%;
+  grid-template-columns: 1fr;
+  width: 100vw;
+  grid-template-areas:
+    "nav"
+    "body"
+    "footer";
 }
 
 .regUserForm,
@@ -38,6 +45,7 @@ nav {
   margin: 0 auto;
 
   align-items: center;
+  grid-area: nav;
 }
 
 nav h2 {
@@ -47,6 +55,10 @@ nav h2 {
 
 nav ul {
   display: flex;
+  flex-direction: column;
+  height: 150px;
+  justify-content: space-evenly;
+  margin-top: 60px;
 }
 
 nav li {
@@ -63,4 +75,5 @@ a {
 footer {
   text-align: center;
   font-size: 0.75rem;
+  grid-area: footer;
 }

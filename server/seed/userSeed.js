@@ -1,6 +1,7 @@
 const dbConnect = require("../config/dbConnect");
 const seeder = require("../config/dbSeed");
 const Users = require("../models/userModel");
+const bcrypt = require("bcrypt");
 const { v4 } = require("uuid");
 
 dbConnect;
@@ -15,7 +16,7 @@ const users = [
     age: 33,
     email: "things@gmail.com",
     phone: "17074539977",
-    password: "123456",
+    password: await bcrypt.hash("123456", 10),
     homeAddress: {
       number: "323",
       street: "elm st",
@@ -49,7 +50,7 @@ const users = [
     age: 73,
     email: "builder@gmail.com",
     phone: "3849596672",
-    password: "123456",
+    password: await bcrypt.hash("123456", 10),
     homeAddress: {
       number: "512",
       street: "sycamoore st",
@@ -82,7 +83,7 @@ const users = [
     age: 45,
     email: "mooch@gmail.com",
     phone: "2003635425",
-    password: "123456",
+    password: await bcrypt.hash("123456", 10),
     homeAddress: {
       number: "12",
       street: "oak st",

@@ -1,8 +1,10 @@
 const cors = require("cors");
 const express = require("express");
 const dotenv = require("dotenv").config();
-const dbConnect = require("./config/dbConnect");
 const cookieParser = require("cookie-parser");
+const dbConnect = require("./config/dbConnect");
+
+const path = require("path");
 
 const songRoutes = require("./routes/songRoutes");
 const userRoutes = require("./routes/userRoutes");
@@ -17,7 +19,8 @@ const port = process.env.PORT || 5252;
 // CONFIG
 app.use(
   cors({
-    origin: "http://127.0.0.1:5173",
+    origin: "http://localhost:5173",
+    // origin: "http://127.0.0.1:5173",
     methods: ["GET", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true,
   })
@@ -36,6 +39,8 @@ app.use("/", serverRoutes);
 app.get("*", (req, res) => {
   res.send("404");
 });
+
+console.log(path.join(__dirname, "static", "images", "profileAvatars").normalize());
 
 app.use(errorHandler);
 app.listen(port, () => console.log(`server running on  http://localhost:${port}`));
