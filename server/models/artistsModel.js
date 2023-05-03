@@ -21,6 +21,11 @@ const artistSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+artistSchema.post("save", (doc, next) => {
+  console.log("new artist was saved to the database", doc);
+  next();
+});
+
 const Artists = mongoose.model("Artists", artistSchema);
 
 module.exports = Artists;

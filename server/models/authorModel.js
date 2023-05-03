@@ -13,6 +13,11 @@ const authorSchema = mongoose.Schema({
   articles: [{ type: String }],
 });
 
+authorSchema.post("save", (doc, next) => {
+  console.log("new author was saved to the database", doc);
+  next();
+});
+
 const Author = mongoose.model("Author", authorSchema);
 
 module.exports = Author;

@@ -10,6 +10,11 @@ const forumSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+forumSchema.post("save", (doc, next) => {
+  console.log("forum was saved to the database", doc);
+  next();
+});
+
 const Forum = mongoose.model("Forum", forumSchema);
 
 module.exports = Forum;

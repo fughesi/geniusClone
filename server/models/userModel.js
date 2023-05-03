@@ -61,6 +61,11 @@ const userSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+userSchema.post("save", (doc, next) => {
+  console.log("new user was saved to the database", doc);
+  next();
+});
+
 const Users = mongoose.model("Users", userSchema);
 
 module.exports = Users;

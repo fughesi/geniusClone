@@ -99,8 +99,10 @@ const createNewUser = asyncHandler(async (req, res) => {
   const result = await newUser.save();
 
   if (result) {
-    console.log("New user created");
-    res.status(201).json({ message: `Welcome aboard, ${result.username || "new user"}` });
+    res
+      .status(201)
+      .cookie("newUser", true, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 })
+      .json({ message: `Welcome aboard, ${result.username || "new user"}` });
   } else {
     res.status(400);
     throw new Error("Unable to create new user profile at this time");

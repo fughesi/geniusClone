@@ -17,6 +17,11 @@ const songSchema = mongoose.Schema({
   genres: [{ type: String }],
 });
 
+songSchema.post("save", (doc, next) => {
+  console.log("new song was saved to the database", doc);
+  next();
+});
+
 const Songs = mongoose.model("Songs", songSchema);
 
 module.exports = Songs;

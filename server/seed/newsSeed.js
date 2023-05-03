@@ -34,6 +34,20 @@ const news = [
     referencedSongs: ["F*CK MY LIFE"],
     isPublished: true,
   }),
+  new News({
+    id: v4(),
+    title: `this is testing BS`,
+    snippet: `delete this shit`,
+    article: `Don't you dare keep this on the mother fuckng database or I'll pee in your cereal`,
+    author: "644de1e5256d5e2d5bc462de",
+    date: Date.now().toString(),
+    photo: "http://localhost:5200/images/monkey.jpg",
+    photoAlt: "a mother fucking monkey",
+    categories: ["News"],
+    referencedArtists: ["SEVENTEEN (세븐틴)"],
+    referencedSongs: ["F*CK MY LIFE"],
+    isPublished: true,
+  }),
 ];
 
 seeder(news);

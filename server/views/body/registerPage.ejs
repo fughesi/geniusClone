@@ -56,6 +56,29 @@
 
     <button type="submit">SUBMIT</button>
   </label>
-
-  <!-- username, firstName, lastName, age, phone, email, password, shippingAddress, billingAddress, homeAddress  -->
 </form>
+
+<script>
+  const form = document.querySelector("form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const data = {
+      username: form.username.value,
+      firstName: form.firstName.value,
+      lastName: form.lastName.value,
+      age: form.age.value,
+      phone: form.phone.value,
+      email: form.email.value,
+      password: form.password.value,
+      // shippingAddress: form.shippingAddress.value,
+      // shippingAddressNumber: form.shippingAddress.number.value,
+      // shippingAddressCity: form.shippingAddress[city].value,
+      // shippingAddressState: form.shippingAddress[state].value,
+      // shippingAddressZipCode: form.shippingAddress[zipCode].value,
+    };
+
+    console.log(data);
+  });
+</script>

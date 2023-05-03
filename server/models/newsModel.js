@@ -24,6 +24,11 @@ const newsSchema = mongoose.Schema(
   }
 );
 
+newsSchema.post("save", (doc, next) => {
+  console.log("news article was saved to the database", doc);
+  next();
+});
+
 const News = mongoose.model("News", newsSchema);
 
 module.exports = News;
