@@ -1,0 +1,62 @@
+/* ######### FONT STACKS ######### */
+
+/* oswald-300 - latin */
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 300;
+  src: local("oswald"), url("./assets/fonts/oswald-latin-300.woff2") format("woff2"),
+    url("./assets/fonts/oswald-latin-300.woff") format("woff");
+}
+/* oswald-regular - latin */
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 400;
+  src: local("oswald"), url("./assets/fonts/oswald-latin-regular.woff2") format("woff2"),
+    url("./assets/fonts/oswald-latin-regular.woff") format("woff");
+}
+/* oswald-700 - latin */
+@font-face {
+  font-family: "Oswald";
+  font-style: normal;
+  font-weight: 700;
+  src: local("oswald"), url("./assets/fonts/oswald-latin-700.woff2") format("woff2"),
+    url("./assets/fonts/oswald-latin-700.woff") format("woff");
+}
+
+/* openSans-300 - latin */
+@font-face {
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 300;
+  src: local("OpenSans"), url("./assets/fonts/OpenSans-Light.ttf") format("ttf");
+}
+/* openSans-300-italic - latin */
+@font-face {
+  font-family: "OpenSans";
+  font-style: italic;
+  font-weight: 300;
+  src: local("OpenSans"), url("./assets/fonts/OpenSans-LightItalic.ttf") format("ttf");
+}
+/* openSans-400 - latin */
+@font-face {
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 400;
+  src: local("OpenSans"), url("./assets/fonts/OpenSans-Regular.ttf") format("ttf");
+}
+/* openSans-600 - latin */
+@font-face {
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 600;
+  src: local("OpenSans"), url("./assets/fonts/OpenSans-Semibold.ttf") format("ttf");
+}
+/* openSans-700 - latin */
+@font-face {
+  font-family: "OpenSans";
+  font-style: normal;
+  font-weight: 700;
+  src: local("OpenSans"), url("./assets/fonts/OpenSans-Bold.ttf") format("ttf");
+}

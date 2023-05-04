@@ -1,6 +1,6 @@
 const express = require("express");
 const { getAllSongs, getSingleSong, addNewSong } = require("../controllers/songControllers");
-const { SongValidation } = require("../validation/verifyData");
+const { SongValidation } = require("../validation/validateData");
 const validation = require("../middleware/validateData");
 
 const router = express.Router();

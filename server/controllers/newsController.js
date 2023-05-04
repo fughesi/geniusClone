@@ -3,7 +3,6 @@ const News = require("../models/newsModel");
 const Author = require("../models/authorModel");
 const asyncHandler = require("express-async-handler");
 const capitalizeFirstLetter = require("../utils/capitalize");
-const { array } = require("joi");
 
 //==============================================
 
@@ -11,7 +10,7 @@ const { array } = require("joi");
 // ROUTE : GET /api/news
 //ACCESS : public
 const getAllNewsArticles = asyncHandler(async (req, res) => {
-  const result = await News.find();
+  const result = await News.find().populate({ path: "author", select: ["username"] });
 
   if (result) {
     console.log("News articles sent");

@@ -1,0 +1,54 @@
+<form action="">
+  <label htmlFor="username">
+    username:
+    <input type="text" name="username" />
+  </label>
+  <br />
+  <label htmlFor="email">
+    email:
+    <input type="email" name="email" />
+  </label>
+  <br />
+  <label htmlFor="password">
+    password:
+    <input type="password" name="password" />
+  </label>
+  <br />
+</form>
+
+<button data-open-modal>open</button>
+
+<dialog data-modal>
+  <div>this is a modal</div>
+  <button data-close-modal>close</button>
+</dialog>
+
+<script>
+  const openModal = document.querySelector("[data-open-modal]");
+  const closeModal = document.querySelector("[data-close-modal]");
+  const modal = document.querySelector("[data-modal]");
+
+  document.addEventListener("mouseout", (e) => console.log(e.clientX, e.clientY));
+
+  openModal.addEventListener("click", () => {
+    modal.showModal();
+  });
+  // closeModal.addEventListener("click", () => {
+  //   modal.close();
+  // });
+
+  // modal.addEventListener("click", (e)=>{
+  //   const dimensions = modal.getBoundingClientRect()
+
+  // if (
+  //   e.clientX < dimensions.left
+  // )
+
+  // })
+
+  const formData = {
+    username: form.username.value,
+    email: form.email.value,
+    password: form.password.value,
+  };
+</script>

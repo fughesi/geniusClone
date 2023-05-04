@@ -84,6 +84,15 @@
   color: white;
 }
 
-.geniusTitle {
+.geniusTitle a {
   font-weight: 700;
+  /* -webkit-text-fill-color: transparent; */
+  text-shadow: var(--shadow1);
+}
+
+.registrationPrompt a {
+  font-weight: 300;
+  font-size: var(--font2);
+  letter-spacing: 0.2rem;
+  text-shadow: var(--shadow1);
 }

@@ -15,21 +15,25 @@ const storage = multer.diskStorage({
   },
 });
 
-const uploadPhoto = multer({
+const uploadPhoto = (req, res, next) => {
   // include `enctype="multipart/form-data"` inside form tag.
-  storage,
-  fileFilter: (req, file, cb) => {
-    if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.memtype === "image/jpeg") {
-      callbackify(null, true);
-    } else {
-      console.log("Only jpg/jpeg and png files supported");
-      callbackify(null, false);
-      throw new Error("Only jpg/jpeg and png files supported");
-    }
-  },
-  limits: {
-    fileSize: 1024 * 1024 * 2,
-  },
-}); // append "uploadPhoto" with either .single("image") or .array("images", <count>)
+  multer({
+    storage,
+    fileFilter: (req, file, cb) => {
+      if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.memtype === "image/jpeg") {
+        callbackify(null, true);
+      } else {
+        console.log("Only jpg/jpeg and png files supported");
+        callbackify(null, false);
+        throw new Error("Only jpg/jpeg and png files supported");
+      }
+    },
+    limits: {
+      fileSize: 1024 * 1024 * 2,
+    },
+  });
+  // append "uploadPhoto" with either .single("image") or .array("images", <count>)
+  next();
+};
 
 module.exports = { uploadPhoto };

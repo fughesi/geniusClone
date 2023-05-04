@@ -104,7 +104,6 @@ const createNewUser = asyncHandler(async (req, res) => {
     username: newUser.username,
   });
 
-  console.log(token);
   if (result) {
     res
       .status(201)

@@ -22,7 +22,9 @@ export default function NavMobile() {
         <div className="geniusTitle">
           <NavLink to="/">GENIUS</NavLink>
         </div>
-        <div className="registrationPrompt">REGISTER</div>
+        <div className="registrationPrompt">
+          <NavLink to="/">SIGN UP</NavLink>
+        </div>
       </section>
 
       <section className={`collapsableNavMenu ${navOpen ? "" : "hideMobileNav"}`}>

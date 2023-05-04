@@ -1,4 +1,4 @@
-<form class="regUserForm">
+<form class="regUserForm" enctype="multipart/form-data">
   <h1>registerUser</h1>
   <label
     >username
@@ -81,7 +81,6 @@
       },
     };
 
-    console.log(formData);
     try {
       const res = await fetch("/api/users/register", {
         method: "POST",

@@ -9,6 +9,7 @@ const newsSchema = mongoose.Schema(
     author: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      // ref: "Users",
       ref: "Author",
     },
     date: { type: String, required: true },

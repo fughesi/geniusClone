@@ -4,13 +4,13 @@ export const usersApi = createApi({
   reducerPath: "usersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5200/api/users",
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set("authorization" || "Authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = getState().auth.token;
+    //   if (token) {
+    //     headers.set("authorization" || "Authorization", `Bearer ${token}`);
+    //   }
+    //   return headers;
+    // },
   }),
   tagTypes: ["Post", "User"],
   endpoints: (builder) => ({
@@ -22,8 +22,8 @@ export const usersApi = createApi({
       providesTags: ["User"],
     }),
     getSingleUser: builder.query({
-      query: () => ({
-        url: "/:id",
+      query: async (id) => ({
+        url: `/${await id}`,
         method: "GET",
       }),
       providesTags: ["User"],
