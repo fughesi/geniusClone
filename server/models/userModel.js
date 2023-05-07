@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const userSchema = mongoose.Schema(
   {
     id: { type: String, trim: true },
+    avatar: { data: Buffer, contentType: String },
     username: { type: String, required: "username is required!" },
     firstName: { type: String },
     lastName: { type: String },

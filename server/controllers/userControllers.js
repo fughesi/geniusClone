@@ -1,3 +1,4 @@
+const fs = require("fs");
 const { v4 } = require("uuid");
 const bcrypt = require("bcrypt");
 const roles = require("../utils/roles");
@@ -64,8 +65,19 @@ const createNewUser = asyncHandler(async (req, res) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
+  console.log(
+    fs.readFile(`../static/images/${req.file.filename}`, "utf-8", (err, data) => {
+      if (err) console.log(err);
+      console.log(data);
+    })
+  );
+
   const newUser = new Users({
     id: v4(),
+    avatar: {
+      data: fs.readFileSync("images/profileAvatars", req.file.filename),
+      contentType: "image/png",
+    },
     username,
     firstName: capitalizeFirstLetter(firstName),
     lastName: capitalizeFirstLetter(lastName),

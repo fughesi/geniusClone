@@ -1,4 +1,5 @@
 import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
+import moment from "moment";
 import "./Newsfeed.css";
 
 export default function News() {
@@ -18,8 +19,8 @@ export default function News() {
             <h3>{i.title}</h3>
             <h4>{i.snippet}</h4>
             <p>
-              {/* by {i.author.username} / {new Date().toLocaleDateString().split("/")} */}
-              by {i.author.username} / {new Date().toLocaleDateString().replaceAll("/", " ")}
+              by {i.author?.username} / {moment().format("LL")}
+              {/* by {i.author.username} / {new Date().toLocaleDateString().replaceAll("/", " ")} */}
             </p>
           </div>
           <img src={i.photo} alt={i.photoAlt} width={350} />

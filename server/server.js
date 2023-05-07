@@ -4,8 +4,6 @@ const dotenv = require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const dbConnect = require("./config/dbConnect");
 
-const path = require("path");
-
 const songRoutes = require("./routes/songRoutes");
 const userRoutes = require("./routes/userRoutes");
 const newsRoutes = require("./routes/newsRoutes");
@@ -19,9 +17,10 @@ const port = process.env.PORT || 5252;
 // CONFIG
 app.use(
   cors({
-    origin: "http://localhost:5174",
+    origin: ["http://localhost:5173", "http://localhost:5174"],
     methods: ["GET", "PUT", "PATCH", "POST", "DELETE"],
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
 app.use(cookieParser());

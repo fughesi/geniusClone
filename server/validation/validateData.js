@@ -3,6 +3,7 @@ const Joi = require("joi");
 // ============== USER
 const UserValidation = Joi.object({
   id: Joi.string(),
+  avatar: Joi.string(),
   username: Joi.string().min(2).required(),
   firstName: Joi.string().min(2),
   lastName: Joi.string().min(2),
