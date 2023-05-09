@@ -47,8 +47,19 @@ const getSingleUser = asyncHandler(async (req, res) => {
 //ROUTE : POST /api/users/register
 //ACCESS : public
 const createNewUser = asyncHandler(async (req, res) => {
-  const { username, firstName, lastName, age, phone, email, password, shippingAddress, billingAddress, homeAddress } =
-    req.body;
+  const {
+    avatar,
+    username,
+    firstName,
+    lastName,
+    age,
+    phone,
+    email,
+    password,
+    shippingAddress,
+    billingAddress,
+    homeAddress,
+  } = req.body;
 
   const emailUnavailable = await Users.findOne({ email: email.toLowerCase() }).exec();
   const usernameUnavailable = await Users.findOne({ username }).exec();
@@ -65,19 +76,21 @@ const createNewUser = asyncHandler(async (req, res) => {
 
   const encryptedPassword = await bcrypt.hash(password, 10);
 
-  console.log(
-    fs.readFile(`../static/images/${req.file.filename}`, "utf-8", (err, data) => {
-      if (err) console.log(err);
-      console.log(data);
-    })
-  );
+  // console.log(
+  //   fs.readFile(`../static/images/${req.file.filename}`, "utf-8", (err, data) => {
+  //     if (err) console.log(err);
+  //     console.log(data);
+  //   })
+  // );
+  console.log(avatar);
 
   const newUser = new Users({
     id: v4(),
-    avatar: {
-      data: fs.readFileSync("images/profileAvatars", req.file.filename),
-      contentType: "image/png",
-    },
+    // avatar: {
+    //   data: fs.readFileSync("images/profileAvatars", req.file.filename),
+    //   contentType: "image/png",
+    // },
+    avatar,
     username,
     firstName: capitalizeFirstLetter(firstName),
     lastName: capitalizeFirstLetter(lastName),
