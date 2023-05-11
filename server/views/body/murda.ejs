@@ -1,0 +1,9 @@
+<%= typeof msg != "undefined" ? msg : "" %>
+
+<div>
+  <h1>Upload image</h1>
+  <form action="/murda" method="POST" enctype="multipart/form-data">
+    <input type="file" name="image" />
+    <button>submit</button>
+  </form>
+</div>

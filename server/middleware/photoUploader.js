@@ -3,8 +3,8 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "images/profileAvatars");
-    // cb(null, path.join(__dirname, "..", "static", "images", "profileAvatars").normalize());
+    //   cb(null, "images/profileAvatars");
+    cb(null, path.join(__dirname, "..", "static", "images", "profileAvatars").normalize());
   },
   filename: (req, file, cb) => {
     cb(
@@ -16,8 +16,8 @@ const storage = multer.diskStorage({
   },
 });
 
+// include `enctype="multipart/form-data"` inside form tag.
 const uploadPhoto = multer({
-  // include `enctype="multipart/form-data"` inside form tag.
   storage: storage,
   fileFilter: (req, file, cb) => {
     if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
