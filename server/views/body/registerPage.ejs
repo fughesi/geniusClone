@@ -1,4 +1,4 @@
-<form class="regUserForm" enctype="multipart/form-data">
+<form class="regUserForm" method="POST" enctype="multipart/form-data">
   <h1>registerUser</h1>
   <label>
     <input type="file" name="image" />
@@ -68,7 +68,7 @@
     e.preventDefault();
 
     const formData = {
-      image: form.image.value,
+      avatar: form.image.value,
       username: form.username.value,
       firstName: form.firstName.value,
       lastName: form.lastName.value,

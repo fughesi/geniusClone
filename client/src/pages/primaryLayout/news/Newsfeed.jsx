@@ -6,7 +6,7 @@ import { useState } from "react";
 
 export default function News() {
   const [body, setBody] = useState({
-    avatar: "",
+    avatar: {},
     username: "",
     firstName: "",
     lastName: "",
@@ -31,32 +31,20 @@ export default function News() {
     isSuccess: newsSuccess,
   } = useGetAllNewsArticlesQuery({ refetchOnMountOrArgChange: true });
 
-  function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        resolve(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        reject(error);
-      };
-    });
-  }
-
-  const handleFileUpload = async (e) => {
-    const file = e.target.files[0];
-    const base64 = await convertToBase64(file);
-    setBody((i) => ({ ...i, avatar: base64 }));
-  };
-
   const formData = (e) => {
-    console.log(e.target);
-    const { name, value } = e.target;
-    setBody((i) => ({
-      ...i,
-      [name]: value,
-    }));
+    const { name, value, type } = e.target;
+
+    if (type == "file") {
+      setBody((i) => ({
+        ...i,
+        avatar: e.target.files[0],
+      }));
+    } else {
+      setBody((i) => ({
+        ...i,
+        [name]: value,
+      }));
+    }
   };
 
   console.log(body);
@@ -76,7 +64,7 @@ export default function News() {
           accept=".jpeg, .jpg, .png"
           id="fileUpload"
           hidden
-          onChange={(e) => handleFileUpload(e)}
+          onChange={(e) => (formData(e), console.log(e.target.files[0]))}
         />
 
         <br />
@@ -133,12 +121,9 @@ export default function News() {
               <input type="text" title="shippingAddress" name="zipCode" />
             </label>
           </div>
+          <br />
           <button type="submit">SUBMIT</button>
         </label>
-
-        <h3>this is a form</h3>
-        <p>do things</p>
-        <button>submit</button>
       </form>
 
       <br />

@@ -8,7 +8,7 @@ const router = express.Router();
 
 // USER ROUTES
 router.route("/").get(getAllUsers);
-router.route("/register").post(validation(UserValidation), createNewUser);
+router.route("/register").post(validation(UserValidation), uploadPhoto.single("avatar"), createNewUser);
 router.route("/:id").get(getSingleUser);
 
 module.exports = router;
