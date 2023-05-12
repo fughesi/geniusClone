@@ -12,6 +12,7 @@ import themeReducer from "./features/themeSlice.jsx";
 import { usersApi } from "./services/UsersAPI.jsx";
 import { newsApi } from "./services/NewsAPI.jsx";
 import { songsApi } from "./services/SongAPI.jsx";
+import { practiceApi } from "./services/practiceAPI.jsx";
 
 const store = configureStore({
   reducer: {
@@ -19,9 +20,10 @@ const store = configureStore({
     [usersApi.reducerPath]: usersApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [songsApi.reducerPath]: songsApi.reducer,
+    [practiceApi.reducerPath]: practiceApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(usersApi.middleware, newsApi.middleware, songsApi.middleware),
+    getDefaultMiddleware().concat(usersApi.middleware, newsApi.middleware, songsApi.middleware, practiceApi.middleware),
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(

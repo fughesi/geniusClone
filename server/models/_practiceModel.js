@@ -9,7 +9,7 @@ const practiceSchema = mongoose.Schema({
 });
 
 practiceSchema.post("save", (doc, next) => {
-  console.log("new name and image was saved to the database", doc);
+  console.log("new name and image was saved to the database");
   next();
 });
 

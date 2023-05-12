@@ -1,5 +1,6 @@
 const fs = require("fs");
 const express = require("express");
+const asyncHandler = require("express-async-handler");
 const Practice = require("../models/_practiceModel");
 
 const homepage = (req, res) => {
@@ -45,4 +46,23 @@ const postMockRegistration = (req, res) => {
   res.send("image is saved");
 };
 
-module.exports = { homepage, registerUser, registerPage, loginPage, mockRegisterPage, postMockRegistration };
+const getAllpracticeDB = asyncHandler(async (req, res) => {
+  const result = await Practice.find();
+
+  if (result) {
+    res.status(200).json(result);
+  } else {
+    res.status(500);
+    throw new Error("no practice results found in DB");
+  }
+});
+
+module.exports = {
+  homepage,
+  registerUser,
+  registerPage,
+  loginPage,
+  mockRegisterPage,
+  postMockRegistration,
+  getAllpracticeDB,
+};

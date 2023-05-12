@@ -6,6 +6,7 @@ const {
   loginPage,
   mockRegisterPage,
   postMockRegistration,
+  getAllpracticeDB,
 } = require("../controllers/serverControllers");
 const { UserValidation } = require("../validation/validateData");
 const validation = require("../middleware/validation");
@@ -18,5 +19,6 @@ router.route("/").get(homepage);
 router.route("/register").get(registerPage).post(uploadPhoto.single("image"), registerUser);
 router.route("/login").get(loginPage).post(validation(UserValidation), loginPage);
 router.route("/mockRegister").get(mockRegisterPage).post(uploadPhoto.single("image"), postMockRegistration);
+router.route("/getPracticeReg").get(getAllpracticeDB);
 
 module.exports = router;

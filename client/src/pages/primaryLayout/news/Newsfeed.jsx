@@ -1,8 +1,9 @@
 import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
 import { useCreateNewUserMutation } from "../../../services/UsersAPI.jsx";
+import { useGetAllPracticeResultsQuery } from "../../../services/practiceAPI.jsx";
+import { useState } from "react";
 import moment from "moment";
 import "./Newsfeed.css";
-import { useState } from "react";
 
 export default function News() {
   const [body, setBody] = useState({
@@ -23,7 +24,9 @@ export default function News() {
     // },
   });
 
-  const [updatePost, { data }] = useCreateNewUserMutation();
+  // const [updatePost, { data }] = useCreateNewUserMutation();
+
+  const { data: practice, isSuccess: practiceSuccess } = useGetAllPracticeResultsQuery();
 
   const {
     data: news,
@@ -31,29 +34,27 @@ export default function News() {
     isSuccess: newsSuccess,
   } = useGetAllNewsArticlesQuery({ refetchOnMountOrArgChange: true });
 
-  const formData = (e) => {
-    const { name, value, type } = e.target;
+  // const formData = (e) => {
+  //   const { name, value, type } = e.target;
 
-    if (type == "file") {
-      setBody((i) => ({
-        ...i,
-        avatar: e.target.files[0],
-      }));
-    } else {
-      setBody((i) => ({
-        ...i,
-        [name]: value,
-      }));
-    }
-  };
-
-  console.log(body);
+  //   if (type == "file") {
+  //     setBody((i) => ({
+  //       ...i,
+  //       avatar: e.target.files[0],
+  //     }));
+  //   } else {
+  //     setBody((i) => ({
+  //       ...i,
+  //       [name]: value,
+  //     }));
+  //   }
+  // };
 
   return (
     <main>
       <br />
       <br />
-
+      {/* 
       <form onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
         <label htmlFor="fileUpload">upload a file!</label>
 
@@ -124,11 +125,26 @@ export default function News() {
           <br />
           <button type="submit">SUBMIT</button>
         </label>
-      </form>
+      </form> */}
+      {practiceSuccess &&
+        practice?.map((i, index) => {
+          // const base64String = btoa(String.fromCharCode(...new Uint8Array(i.image.data.data)));
+          const base64String = btoa(
+            new Uint8Array(i.image.data.data).reduce(function (data, byte) {
+              return data + String.fromCharCode(byte);
+            }, "")
+          );
+          return (
+            <div key={index}>
+              {i.name}
+              <br />
+              <img src={`data:image/png;base64,${base64String}`} alt="things" width="300" />
+              <br />
+              <br />
+            </div>
+          );
+        })}
 
-      <br />
-      <br />
-      <br />
       <br />
       <br />
       <br />
