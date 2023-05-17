@@ -1,4 +1,7 @@
 const express = require("express");
+const Practice = require("../models/_practiceModel");
+const fs = require("fs");
+
 const {
   homepage,
   registerUser,
@@ -9,8 +12,8 @@ const {
   getAllpracticeDB,
 } = require("../controllers/serverControllers");
 const { UserValidation } = require("../validation/validateData");
-const validation = require("../middleware/validation");
 const { uploadPhoto } = require("../middleware/photoUploader");
+const validation = require("../middleware/validation");
 
 const router = express.Router();
 

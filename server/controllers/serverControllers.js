@@ -28,14 +28,22 @@ const mockRegisterPage = (req, res) => {
 };
 
 const postMockRegistration = (req, res) => {
-  const saveImage = new Practice({
-    name: req.body.name,
+  const { name, height, weight, eyeColor } = req.body;
+
+  console.log(req.body);
+
+  const result = new Practice({
+    name,
+    weight,
+    height,
+    eyeColor,
     image: {
       data: fs.readFileSync("static/images/profileAvatars/" + req.file.filename),
       contentType: "image/png",
     },
   });
-  saveImage
+
+  result
     .save()
     .then((res) => {
       console.log("image is saved");
@@ -43,6 +51,7 @@ const postMockRegistration = (req, res) => {
     .catch((err) => {
       console.log(err, "error has occur");
     });
+
   res.send("image is saved");
 };
 

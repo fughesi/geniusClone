@@ -18,3 +18,19 @@ const file = e.target.files[0];
 const base64 = await convertToBase64(file);
 setBody((i) => ({ ...i, avatar: base64 }));
 };
+
+// const formData = (e) => {
+// const { name, value, type } = e.target;
+
+// if (type == "file") {
+// setBody((i) => ({
+// ...i,
+// avatar: e.target.files[0],
+// }));
+// } else {
+// setBody((i) => ({
+// ...i,
+// [name]: value,
+// }));
+// }
+// };

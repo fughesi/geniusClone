@@ -8,6 +8,7 @@ import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 
 //FEATURES
 import themeReducer from "./features/themeSlice.jsx";
+import utilsReducer from "./features/utilsSlice.jsx";
 //SERVICES
 import { usersApi } from "./services/UsersAPI.jsx";
 import { newsApi } from "./services/NewsAPI.jsx";
@@ -17,6 +18,7 @@ import { practiceApi } from "./services/practiceAPI.jsx";
 const store = configureStore({
   reducer: {
     theme: themeReducer,
+    utils: utilsReducer,
     [usersApi.reducerPath]: usersApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [songsApi.reducerPath]: songsApi.reducer,

@@ -22,7 +22,6 @@ const uploadPhoto = multer({
     if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
       cb(null, true);
     } else {
-      console.log("Only jpg/jpeg and png files 2MB or less supported");
       cb(null, false);
       throw new Error("Only jpg/jpeg and png files 2MB or less supported");
     }

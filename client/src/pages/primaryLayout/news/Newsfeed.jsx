@@ -1,32 +1,21 @@
 import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
-import { useCreateNewUserMutation } from "../../../services/UsersAPI.jsx";
-import { useGetAllPracticeResultsQuery } from "../../../services/practiceAPI.jsx";
+import { useGetAllPracticeResultsQuery, usePostPracticeResultsMutation } from "../../../services/practiceAPI.jsx";
 import { useState } from "react";
 import moment from "moment";
 import "./Newsfeed.css";
 
 export default function News() {
   const [body, setBody] = useState({
-    avatar: {},
-    username: "",
-    firstName: "",
-    lastName: "",
-    age: 0,
-    phone: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    // shippingAddress: {
-    //   number: "",
-    //   city: "",
-    //   state: "",
-    //   zipCode: "",
-    // },
+    image: "",
+    name: "",
+    height: "",
+    weight: "",
+    eyeColor: "",
   });
 
-  // const [updatePost, { data }] = useCreateNewUserMutation();
-
   const { data: practice, isSuccess: practiceSuccess } = useGetAllPracticeResultsQuery();
+
+  const [updatePost] = usePostPracticeResultsMutation();
 
   const {
     data: news,
@@ -34,106 +23,62 @@ export default function News() {
     isSuccess: newsSuccess,
   } = useGetAllNewsArticlesQuery({ refetchOnMountOrArgChange: true });
 
-  // const formData = (e) => {
-  //   const { name, value, type } = e.target;
+  const formData = (e) => {
+    const { name, value, type, files } = e.target;
 
-  //   if (type == "file") {
-  //     setBody((i) => ({
-  //       ...i,
-  //       avatar: e.target.files[0],
-  //     }));
-  //   } else {
-  //     setBody((i) => ({
-  //       ...i,
-  //       [name]: value,
-  //     }));
-  //   }
-  // };
+    if (type == "file") {
+      setBody((i) => ({
+        image: files[0],
+      }));
+    } else {
+      setBody((i) => ({
+        ...i,
+        [name]: value,
+      }));
+    }
+  };
+
+  console.log(body);
 
   return (
     <main>
       <br />
-      <br />
-      {/* 
+
       <form onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
-        <label htmlFor="fileUpload">upload a file!</label>
-
-        <input
-          type="file"
-          label="Image"
-          name="avatar"
-          accept=".jpeg, .jpg, .png"
-          id="fileUpload"
-          hidden
-          onChange={(e) => (formData(e), console.log(e.target.files[0]))}
-        />
-
+        <input type="file" name="image" onChange={(e) => formData(e)} />
         <br />
         <label>
-          username
-          <input type="text" name="username" required onChange={(e) => formData(e)} />
+          name
+          <input type="text" name="name" onChange={(e) => formData(e)} />
         </label>
+        <br />
         <label>
-          First name
-          <input type="text" name="firstName" onChange={(e) => formData(e)} />
+          weight
+          <input type="text" name="weight" onChange={(e) => formData(e)} />
         </label>
+        <br />
         <label>
-          Last name
-          <input type="text" name="lastName" onChange={(e) => formData(e)} />
+          height
+          <input type="text" name="height" onChange={(e) => formData(e)} />
         </label>
+        <br />
         <label>
-          age
-          <input type="number" name="age" onChange={(e) => formData(e)} />
+          eyeColor
+          <input type="text" name="eyeColor" onChange={(e) => formData(e)} />
         </label>
-        <label>
-          phone
-          <input type="text" name="phone" onChange={(e) => formData(e)} />
-        </label>
-        <label>
-          email
-          <input type="email" name="email" onChange={(e) => formData(e)} />
-        </label>
-        <label>
-          password
-          <input type="password" name="password" onChange={(e) => formData(e)} />
-        </label>
-        <label>
-          repeat password
-          <input type="password" name="confirmPassword" onChange={(e) => formData(e)} />
-        </label>
-        <label>
-          Shipping Address
-          <div>
-            <label>
-              number
-              <input type="text" title="shippingAddress" name="number" onChange={(e) => formData(e)} />
-            </label>
-            <label>
-              City
-              <input type="text" title="shippingAddress" name="city" onChange={(e) => formData(e)} />
-            </label>
-            <label>
-              State
-              <input type="text" title="shippingAddress" name="state" onChange={(e) => formData(e)} />
-            </label>
+        <br />
+        <button>submit</button>
+        <br />
+      </form>
 
-            <label>
-              Zip Code
-              <input type="text" title="shippingAddress" name="zipCode" />
-            </label>
-          </div>
-          <br />
-          <button type="submit">SUBMIT</button>
-        </label>
-      </form> */}
       {practiceSuccess &&
         practice?.map((i, index) => {
-          // const base64String = btoa(String.fromCharCode(...new Uint8Array(i.image.data.data)));
           const base64String = btoa(
-            new Uint8Array(i.image.data.data).reduce(function (data, byte) {
+            new Uint8Array(i.image?.data?.data).reduce(function (data, byte) {
               return data + String.fromCharCode(byte);
             }, "")
           );
+
           return (
             <div key={index}>
               {i.name}
@@ -145,7 +90,6 @@ export default function News() {
           );
         })}
 
-      <br />
       <br />
       <br />
       {newsSuccess &&
