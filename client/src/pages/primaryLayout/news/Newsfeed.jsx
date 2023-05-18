@@ -1,17 +1,18 @@
 import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
 import { useGetAllPracticeResultsQuery, usePostPracticeResultsMutation } from "../../../services/practiceAPI.jsx";
 import { useState } from "react";
+import axios from "axios";
 import moment from "moment";
 import "./Newsfeed.css";
 
 export default function News() {
   const [body, setBody] = useState({
-    image: "",
     name: "",
     height: "",
     weight: "",
     eyeColor: "",
   });
+  const [file, setFile] = useState();
 
   const { data: practice, isSuccess: practiceSuccess } = useGetAllPracticeResultsQuery();
 
@@ -26,8 +27,9 @@ export default function News() {
   const formData = (e) => {
     const { name, value, type, files } = e.target;
 
-    if (type == "file") {
+    if (type === "file") {
       setBody((i) => ({
+        ...i,
         image: files[0],
       }));
     } else {
@@ -40,31 +42,54 @@ export default function News() {
 
   console.log(body);
 
+  const fileData = (e) => {
+    setFile((i) => e.target.files[0]);
+    console.log(file);
+  };
+
+  const handleUpload = (e) => {
+    let data = new FormData();
+
+    data.append("image", body.image);
+    data.append("name", body.name);
+    data.append("height", body.height);
+    data.append("weight", body.weight);
+    data.append("eyeColor", body.eyeColor);
+
+    axios({
+      url: "http://localhost:5200/mockRegister",
+      method: "POST",
+      data: data,
+    });
+  };
+
   return (
     <main>
       <br />
 
-      <form onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
+      <form encType="multipart/form-data" onSubmit={(e) => (e.preventDefault(), handleUpload(e))}>
+        {/* <form onSubmit={(e) => (e.preventDefault(), updatePost(body))}> */}
+        {/* <input type="file" name="image" onChange={(e) => fileData(e)} /> */}
         <input type="file" name="image" onChange={(e) => formData(e)} />
         <br />
         <label>
           name
-          <input type="text" name="name" onChange={(e) => formData(e)} />
+          <input type="text" name="name" value={body.name} onChange={(e) => formData(e)} />
         </label>
         <br />
         <label>
           weight
-          <input type="text" name="weight" onChange={(e) => formData(e)} />
+          <input type="text" name="weight" value={body.weight} onChange={(e) => formData(e)} />
         </label>
         <br />
         <label>
           height
-          <input type="text" name="height" onChange={(e) => formData(e)} />
+          <input type="text" name="height" value={body.height} onChange={(e) => formData(e)} />
         </label>
         <br />
         <label>
           eyeColor
-          <input type="text" name="eyeColor" onChange={(e) => formData(e)} />
+          <input type="text" name="eyeColor" value={body.eyeColor} onChange={(e) => formData(e)} />
         </label>
         <br />
         <button>submit</button>
