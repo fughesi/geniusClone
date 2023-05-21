@@ -34,3 +34,26 @@ setBody((i) => ({ ...i, avatar: base64 }));
 // }));
 // }
 // };
+
+==== axios POST c image ===
+
+const handleUpload = (e) => {
+try {
+let data = new FormData();
+
+      data.append("image", body.image);
+      data.append("name", body.name);
+      data.append("height", body.height);
+      data.append("weight", body.weight);
+      data.append("eyeColor", body.eyeColor);
+
+      axios({
+        url: "http://localhost:5200/mockRegister",
+        method: "POST",
+        data: data,
+      });
+    } catch (error) {
+      console.log(error.response);
+    }
+
+};

@@ -4,8 +4,8 @@ export const practiceApi = createApi({
   reducerPath: "practiceApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5200/",
-    headers: { ContentType: "multipart / form - data" },
   }),
+  tagTypes: ["Practice"],
   endpoints: (builder) => ({
     getAllPracticeResults: builder.query({
       query: () => ({
@@ -15,13 +15,21 @@ export const practiceApi = createApi({
       providesTags: ["Practice"],
     }),
     postPracticeResults: builder.mutation({
-      query: (body) => ({
-        url: "mockRegister",
-        method: "POST",
-        enctype: "multipart/form-data",
-        formData: true,
-        body,
-      }),
+      query: (data) => {
+        const body = new FormData();
+        body.append("image", data.image);
+        body.append("name", data.name);
+        body.append("height", data.height);
+        body.append("weight", data.weight);
+        body.append("eyeColor", data.eyeColor);
+
+        return {
+          url: "mockRegister",
+          method: "POST",
+          body,
+        };
+      },
+
       invalidatesTags: ["Practice"],
     }),
   }),

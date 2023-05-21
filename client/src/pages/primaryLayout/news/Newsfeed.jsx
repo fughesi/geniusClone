@@ -2,7 +2,6 @@ import { useGetAllPracticeResultsQuery, usePostPracticeResultsMutation } from ".
 import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
 import { useState } from "react";
 import moment from "moment";
-import axios from "axios";
 import "./Newsfeed.css";
 
 export default function News() {
@@ -17,7 +16,7 @@ export default function News() {
 
   const [updatePost] = usePostPracticeResultsMutation();
 
-  const { data: news, isSuccess: newsSuccess } = useGetAllNewsArticlesQuery({ refetchOnMountOrArgChange: true });
+  const { data: news, isSuccess: newsSuccess } = useGetAllNewsArticlesQuery();
 
   const formData = (e) => {
     const { name, value, type, files } = e.target;
@@ -37,28 +36,11 @@ export default function News() {
 
   console.log(body);
 
-  const handleUpload = (e) => {
-    let data = new FormData();
-
-    data.append("image", body.image);
-    data.append("name", body.name);
-    data.append("height", body.height);
-    data.append("weight", body.weight);
-    data.append("eyeColor", body.eyeColor);
-
-    axios({
-      url: "http://localhost:5200/mockRegister",
-      method: "POST",
-      data: data,
-    });
-  };
-
   return (
     <main>
       <br />
-
-      <form encType="multipart/form-data" onSubmit={(e) => (e.preventDefault(), handleUpload(e))}>
-        <input type="file" name="image" onChange={(e) => formData(e)} />
+      <form encType="multipart/form-data" onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
+        <input type="file" name="image" formEncType="multipart/form-data" onChange={(e) => formData(e)} />
         <br />
         <label>
           name
