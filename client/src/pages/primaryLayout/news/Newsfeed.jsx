@@ -1,8 +1,8 @@
-import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
 import { useGetAllPracticeResultsQuery, usePostPracticeResultsMutation } from "../../../services/practiceAPI.jsx";
+import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
 import { useState } from "react";
-import axios from "axios";
 import moment from "moment";
+import axios from "axios";
 import "./Newsfeed.css";
 
 export default function News() {
@@ -12,17 +12,12 @@ export default function News() {
     weight: "",
     eyeColor: "",
   });
-  const [file, setFile] = useState();
 
   const { data: practice, isSuccess: practiceSuccess } = useGetAllPracticeResultsQuery();
 
   const [updatePost] = usePostPracticeResultsMutation();
 
-  const {
-    data: news,
-    error: newsError,
-    isSuccess: newsSuccess,
-  } = useGetAllNewsArticlesQuery({ refetchOnMountOrArgChange: true });
+  const { data: news, isSuccess: newsSuccess } = useGetAllNewsArticlesQuery({ refetchOnMountOrArgChange: true });
 
   const formData = (e) => {
     const { name, value, type, files } = e.target;
@@ -41,11 +36,6 @@ export default function News() {
   };
 
   console.log(body);
-
-  const fileData = (e) => {
-    setFile((i) => e.target.files[0]);
-    console.log(file);
-  };
 
   const handleUpload = (e) => {
     let data = new FormData();
@@ -68,8 +58,6 @@ export default function News() {
       <br />
 
       <form encType="multipart/form-data" onSubmit={(e) => (e.preventDefault(), handleUpload(e))}>
-        {/* <form onSubmit={(e) => (e.preventDefault(), updatePost(body))}> */}
-        {/* <input type="file" name="image" onChange={(e) => fileData(e)} /> */}
         <input type="file" name="image" onChange={(e) => formData(e)} />
         <br />
         <label>
