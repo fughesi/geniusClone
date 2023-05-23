@@ -12,7 +12,7 @@ export const usersApi = createApi({
     //   return headers;
     // },
   }),
-  tagTypes: ["Post", "User"],
+  tagTypes: ["User"],
   endpoints: (builder) => ({
     getAllUsers: builder.query({
       query: () => ({
@@ -29,12 +29,21 @@ export const usersApi = createApi({
       providesTags: ["User"],
     }),
     createNewUser: builder.mutation({
-      query: (body) => ({
-        url: "/register",
-        method: "POST",
-        body,
-      }),
-      invalidatesTags: ["Post"],
+      query: (data) => {
+        const body = new FormData();
+
+        body.append("image", data?.image);
+        body.append("username", data?.username);
+        body.append("age", data?.age);
+        body.append("firstName", data?.firstName);
+        body.append("lastName", data?.lastName);
+        body.append("password", data?.password);
+        body.append("confirmPassword", data?.confirmPassword);
+        body.append("email", data?.email);
+
+        return { url: "/register", method: "POST", body };
+      },
+      invalidatesTags: ["User"],
     }),
   }),
 });

@@ -4,73 +4,93 @@ import { useCreateNewUserMutation } from "../../services/UsersAPI.jsx";
 
 export default function RegisterUserForm() {
   const [body, setBody] = useState({
-    avatar: {},
+    image: "",
     username: "",
     firstName: "",
     lastName: "",
-    age: 0,
-    phone: "",
+    age: "",
     email: "",
+    phone: "",
     password: "",
     confirmPassword: "",
-    // shippingAddress: {
-    //   number: "",
-    //   city: "",
-    //   state: "",
-    //   zipCode: "",
-    // },
   });
 
-  const [updatePost, { data }] = useCreateNewUserMutation();
+  const [updatePost] = useCreateNewUserMutation();
+
+  const formData = (e) => {
+    const { name, value, type, files } = e.target;
+    console.log(files);
+    if (type === "file") {
+      setBody((i) => ({
+        ...i,
+        image: FileList,
+        // image: files[0],
+      }));
+    } else {
+      setBody((i) => ({
+        ...i,
+        [name]: value,
+      }));
+    }
+  };
 
   return (
-    <form onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
+    <form encType="multipart/form-data" onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
       <label htmlFor="fileUpload">upload a file!</label>
 
       <input
         type="file"
         label="Image"
-        name="avatar"
         accept=".jpeg, .jpg, .png"
         id="fileUpload"
+        multiple={true}
         hidden
-        onChange={(e) => (formData(e), console.log(e.target.files[0]))}
+        onChange={(e) => formData(e)}
       />
 
       <br />
       <label>
         username
-        <input type="text" name="username" required onChange={(e) => formData(e)} />
+        <input type="text" name="username" value={body?.username} required onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         First name
-        <input type="text" name="firstName" onChange={(e) => formData(e)} />
+        <input type="text" name="firstName" value={body?.firstName} onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         Last name
-        <input type="text" name="lastName" onChange={(e) => formData(e)} />
+        <input type="text" name="lastName" value={body?.lastName} onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         age
-        <input type="number" name="age" onChange={(e) => formData(e)} />
+        <input type="number" name="age" value={body?.age} onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         phone
-        <input type="text" name="phone" onChange={(e) => formData(e)} />
+        <input type="text" name="phone" value={body?.phone} onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         email
-        <input type="email" name="email" onChange={(e) => formData(e)} />
+        <input type="email" name="email" value={body?.email} onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         password
-        <input type="password" name="password" onChange={(e) => formData(e)} />
+        <input type="password" name="password" value={body?.password} onChange={(e) => formData(e)} />
       </label>
+      <br />
       <label>
         repeat password
-        <input type="password" name="confirmPassword" onChange={(e) => formData(e)} />
+        <input type="password" name="confirmPassword" value={body?.confirmPassword} onChange={(e) => formData(e)} />
       </label>
-      <label>
+      <br />
+
+      {/* <label>
         Shipping Address
         <div>
           <label>
@@ -91,9 +111,10 @@ export default function RegisterUserForm() {
             <input type="text" title="shippingAddress" name="zipCode" />
           </label>
         </div>
-        <br />
-        <button type="submit">SUBMIT</button>
-      </label>
+      </label> */}
+
+      <br />
+      <button type="submit">SUBMIT</button>
     </form>
   );
 }

@@ -41,6 +41,8 @@ const createNewsArticle = asyncHandler(async (req, res) => {
     isPublished,
   } = req.body;
 
+  console.log(req.body);
+
   const news = {
     id: v4(),
     title: capitalizeFirstLetter(title),

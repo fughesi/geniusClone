@@ -6,6 +6,7 @@ const Users = require("../models/userModel");
 const { createToken, maxAge } = require("../utils/token");
 const asyncHandler = require("express-async-handler");
 const capitalizeFirstLetter = require("../utils/capitalize");
+const fs = require("fs");
 
 // ====================================
 
@@ -47,19 +48,10 @@ const getSingleUser = asyncHandler(async (req, res) => {
 //ROUTE : POST /api/users/register
 //ACCESS : public
 const createNewUser = asyncHandler(async (req, res) => {
-  const {
-    // avatar,
-    username,
-    firstName,
-    lastName,
-    age,
-    phone,
-    email,
-    password,
-    shippingAddress,
-    billingAddress,
-    homeAddress,
-  } = req.body;
+  const { username, firstName, lastName, age, phone, email, password, shippingAddress, billingAddress, homeAddress } =
+    req.body;
+
+  console.log(req.files);
 
   const emailUnavailable = await Users.findOne({ email: email.toLowerCase() }).exec();
   const usernameUnavailable = await Users.findOne({ username }).exec();
@@ -78,8 +70,8 @@ const createNewUser = asyncHandler(async (req, res) => {
 
   const newUser = new Users({
     id: v4(),
-    avatar: {
-      data: fs.readFileSync("images/profileAvatars" + req.file.filename),
+    image: {
+      data: fs.readFileSync("static/images/profileAvatars/" + req.file.filename),
       contentType: "image/png",
     },
     username,

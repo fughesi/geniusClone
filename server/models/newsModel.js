@@ -8,9 +8,9 @@ const newsSchema = mongoose.Schema(
     article: { type: String, required: "article text cannot be blank!" },
     author: {
       type: mongoose.Schema.Types.ObjectId,
-      required: true,
       // ref: "Users",
       ref: "Author",
+      required: true,
     },
     date: { type: String, required: true },
     photo: { type: String },

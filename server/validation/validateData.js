@@ -3,7 +3,7 @@ const Joi = require("joi");
 // ============== USER
 const UserValidation = Joi.object({
   id: Joi.string(),
-  avatar: Joi.string(),
+  image: Joi.binary(),
   username: Joi.string().min(2).required(),
   firstName: Joi.string().min(2),
   lastName: Joi.string().min(2),
@@ -54,7 +54,8 @@ const NewsValidation = Joi.object({
   article: Joi.string().min(50).required(),
   author: Joi.string().required(),
   date: Joi.string().required(),
-  photo: Joi.string(),
+  // photo: Joi.string(),
+  photo: Joi.binary(),
   photoAlt: Joi.string(),
   categories: Joi.array(),
   referencedArtists: Joi.array(),

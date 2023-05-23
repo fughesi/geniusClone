@@ -39,6 +39,12 @@ const mockRegisterPage = (req, res) => {
 
 // =============================
 
+const newsPage = (req, res) => {
+  res.render("content", { title: "newsPage" });
+};
+
+// =============================
+
 //DESC : add a new practice doc in the db
 //ROUTE : POST /mockRegister
 //ACCESS : public
@@ -88,6 +94,7 @@ module.exports = {
   homepage,
   registerUser,
   registerPage,
+  newsPage,
   loginPage,
   mockRegisterPage,
   postMockRegistration,

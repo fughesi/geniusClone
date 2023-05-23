@@ -3,6 +3,7 @@ const path = require("path");
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
+    console.log(req, file);
     cb(null, path.join(__dirname, "..", "static", "images", "profileAvatars").normalize());
   },
   filename: (req, file, cb) => {
@@ -17,7 +18,7 @@ const storage = multer.diskStorage({
 
 // include `enctype="multipart/form-data"` inside form tag.
 const uploadPhoto = multer({
-  storage: storage,
+  storage,
   fileFilter: (req, file, cb) => {
     if (file.mimetype === "image/png" || file.mimetype === "image/jpg" || file.mimetype === "image/jpeg") {
       cb(null, true);
@@ -26,9 +27,9 @@ const uploadPhoto = multer({
       throw new Error("Only jpg/jpeg and png files 2MB or less supported");
     }
   },
-  limits: {
-    fileSize: 1024 * 1024 * 2,
-  },
+  // limits: {
+  //   fileSize: 1024 * 1024 * 2,
+  // },
 });
 // append "uploadPhoto" with either .single("image") or .array("images", <count>)
 

@@ -57,3 +57,42 @@ let data = new FormData();
     }
 
 };
+
+===== practice form ======
+
+      {/* <form encType="multipart/form-data" onSubmit={(e) => (e.preventDefault(), updatePost(body))}>
+        <input type="file" name="image" formEncType="multipart/form-data" onChange={(e) => formData(e)} />
+        <br />
+        <label>
+          name
+          <input type="text" name="name" value={body.name} onChange={(e) => formData(e)} />
+        </label>
+        <br />
+        <label>
+          weight
+          <input type="text" name="weight" value={body.weight} onChange={(e) => formData(e)} />
+        </label>
+        <br />
+        <label>
+          height
+          <input type="text" name="height" value={body.height} onChange={(e) => formData(e)} />
+        </label>
+        <br />
+        <label>
+          eyeColor
+          <input type="text" name="eyeColor" value={body.eyeColor} onChange={(e) => formData(e)} />
+        </label>
+        <br />
+        <button>submit</button>
+        <br />
+      </form> */}
+
+======= code to convert base64 from DB to images on frontend =======
+const base64String = btoa(
+new Uint8Array(i.image?.data?.data).reduce(function (data, byte) {
+return data + String.fromCharCode(byte);
+}, "")
+);
+
+         // return
+              <img src={`data:image/png;base64,${base64String}`} alt="things" width="300" />

@@ -25,7 +25,12 @@ const store = configureStore({
     [practiceApi.reducerPath]: practiceApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(usersApi.middleware, newsApi.middleware, songsApi.middleware, practiceApi.middleware),
+    getDefaultMiddleware({ serializableCheck: false }).concat(
+      usersApi.middleware,
+      newsApi.middleware,
+      songsApi.middleware,
+      practiceApi.middleware
+    ),
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(
