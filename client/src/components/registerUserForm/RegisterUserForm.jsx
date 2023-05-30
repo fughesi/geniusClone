@@ -17,14 +17,31 @@ export default function RegisterUserForm() {
 
   const [updatePost] = useCreateNewUserMutation();
 
+  // trying with multiple files---------
+  // const formData = (e) => {
+  //   const { name, value, type, files } = e.target;
+  //   console.log(files);
+  //   if (type === "file") {
+  //     setBody((i) => ({
+  //       ...i,
+  //       image: FileList,
+  //       // image: files[0],
+  //     }));
+  //   } else {
+  //     setBody((i) => ({
+  //       ...i,
+  //       [name]: value,
+  //     }));
+  //   }
+  // };
+
   const formData = (e) => {
     const { name, value, type, files } = e.target;
-    console.log(files);
+
     if (type === "file") {
       setBody((i) => ({
         ...i,
-        image: FileList,
-        // image: files[0],
+        image: files[0],
       }));
     } else {
       setBody((i) => ({

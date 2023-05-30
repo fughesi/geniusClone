@@ -3,6 +3,7 @@
   --color1: rgb(255, 255, 100);
 
   /* SIZES */
+  --font0: clamp(0.58rem, calc(0.57rem + 0.01vw), 0.62rem);
   --font1: clamp(0.78rem, calc(0.77rem + 0.03vw), 0.8rem);
   --font2: clamp(0.94rem, calc(0.92rem + 0.11vw), 1rem);
   --font3: clamp(1.13rem, calc(1.08rem + 0.22vw), 1.25rem);
