@@ -1,0 +1,20 @@
+.chartGridContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  border-bottom: 2px solid #0002;
+}
+
+.chartGridContainer div:nth-child(1) {
+  padding: 1rem;
+  font-size: var(--font4);
+}
+
+.chartGridContainer div:nth-child(2) {
+  padding: 1rem;
+}
+
+.chartGridContainer div:nth-child(3) {
+  padding: 1rem 2rem 1rem;
+}

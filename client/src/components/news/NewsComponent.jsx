@@ -1,32 +1,24 @@
-import { useGetAllNewsArticlesQuery } from "../../services/NewsAPI.jsx";
-import "./NewsComponent.css";
 import moment from "moment";
+import "./NewsComponent.css";
 
-export default function NewsComponent({ value }) {
-  // export default function NewsComponent({ id, photo, photoAlt, author, username }) {
+export default function NewsComponent({ feature, id, photo, photoAlt, author, title }) {
   return (
     <div className="newsComponentContainer">
-      {/* {newsSuccess && */}
-      {/* news.map((i) => { */}
-      {/* return ( */}
-      <div key={i.id} className="newsArticleContainer">
+      <div key={id} className="newsArticleContainer">
         <div>
-          <p>NEWS</p>
+          <p>{feature || "NEWS"}</p>
           <div></div>
         </div>
         <div className="newsPhotoDiv">
-          <img src={i.photo} alt={i.photoAlt} />
+          <img src={photo} alt={photoAlt} />
         </div>
         <div>
-          <h3>{i.title}</h3>
+          <h3>{title}</h3>
           <p>
-            by {i.author?.username} / <span className="newsComponentDate"> {moment().format("LL")}</span>
+            by {author} / <span className="newsComponentDate"> {moment().format("LL")}</span>
           </p>
         </div>
       </div>
-      {/* ); */}
-      {/* }) */}
-      {/* } */}
     </div>
   );
 }

@@ -1,13 +1,17 @@
 import { useGetAllNewsArticlesQuery } from "../../../services/NewsAPI.jsx";
-import RegisterUserForm from "../../../components/registerUserForm/RegisterUserForm.jsx";
+import { useGetAllArtistsQuery } from "../../../services/ArtistsAPI.jsx";
+import NewsComponent from "../../../components/news/NewsComponent.jsx";
+import Selector from "../../../components/selector/Selector.jsx";
+import ArtistGrid from "../../../components/artistGrid/ArtistGrid.jsx";
 import { useState } from "react";
 import "./Newsfeed.css";
-import NewsComponent from "../../../components/news/NewsComponent.jsx";
 
 export default function News() {
   const [body, setBody] = useState();
 
   const { data: news, isSuccess: newsSuccess } = useGetAllNewsArticlesQuery();
+
+  const { data: artists, isSuccess: artistSuccess } = useGetAllArtistsQuery();
 
   const formData = (e) => {
     const { name, value, type, files } = e.target;
@@ -24,7 +28,7 @@ export default function News() {
       }));
     }
   };
-  console.log(news);
+
   return (
     <main className="newsFeedContainer">
       {/* 
@@ -45,20 +49,42 @@ export default function News() {
               </div>
               ); })}
             */}
-      <NewsComponent />
+
       {newsSuccess &&
-        news.map((i) => {
-          <NewsComponent
-            value={i?.author}
-            //     id={i?.id}
-            //     photo={i?.photo}
-            //     photoAlt={i?.photoAlt}
-            //     author={i?.author?.username}
-            //     username={i?.username}
-          />;
+        news.map((i, index) => {
+          return (
+            <NewsComponent
+              key={index}
+              id={i?.id}
+              title={i?.title}
+              photo={i?.photo}
+              photoAlt={i.photoAlt}
+              author={i?.author?.username}
+              username={i?.username}
+            />
+          );
         })}
-      <br />
-      <br />
+
+      <h3 className="chartsTagline">CHARTS</h3>
+
+      <Selector />
+
+      <section className="artistGridSection">
+        {artistSuccess &&
+          artists.map((i, index) => {
+            return (
+              <ArtistGrid
+                key={index}
+                index={index}
+                title={i.title}
+                stageName={i.stageName}
+                artist={i.artists}
+                photo={i.photo}
+                photoAlt={i.photoAlt}
+              />
+            );
+          })}
+      </section>
     </main>
   );
 }

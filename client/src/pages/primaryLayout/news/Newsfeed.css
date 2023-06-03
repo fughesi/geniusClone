@@ -1,6 +1,20 @@
 .newsFeedContainer {
   display: grid;
   grid-template-columns: 1fr;
-
   place-items: center;
+}
+
+.chartsTagline {
+  margin: 3rem auto 0.75rem;
+
+  letter-spacing: 0.1rem;
+  font-size: var(--font8);
+  font-weight: 900;
+}
+
+.artistGridSection {
+  width: 100%;
+
+  display: grid;
+  grid-template-rows: repeat(auto-fill, 3.75rem);
 }

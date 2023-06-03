@@ -4,7 +4,6 @@ export const newsApi = createApi({
   reducerPath: "newsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5200/api/news",
-    // prepareHeax
   }),
   tagTypes: ["Post", "News"],
   endpoints: (builder) => ({

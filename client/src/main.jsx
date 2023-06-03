@@ -3,9 +3,9 @@ import App from "./App.jsx";
 import React from "react";
 import "./index.css";
 
+//STORE
 import { Provider } from "react-redux";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-
 //FEATURES
 import themeReducer from "./features/themeSlice.jsx";
 import utilsReducer from "./features/utilsSlice.jsx";
@@ -13,6 +13,7 @@ import utilsReducer from "./features/utilsSlice.jsx";
 import { usersApi } from "./services/UsersAPI.jsx";
 import { newsApi } from "./services/NewsAPI.jsx";
 import { songsApi } from "./services/SongAPI.jsx";
+import { artistApi } from "./services/ArtistsAPI.jsx";
 import { practiceApi } from "./services/practiceAPI.jsx";
 
 const store = configureStore({
@@ -22,11 +23,13 @@ const store = configureStore({
     [usersApi.reducerPath]: usersApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [songsApi.reducerPath]: songsApi.reducer,
+    [artistApi.reducerPath]: artistApi.reducer,
     [practiceApi.reducerPath]: practiceApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       usersApi.middleware,
+      artistApi.middleware,
       newsApi.middleware,
       songsApi.middleware,
       practiceApi.middleware

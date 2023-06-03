@@ -1,0 +1,67 @@
+.chartSection {
+  margin: 2.5rem auto;
+  border: 2px solid black;
+  box-shadow: 1px 2px 7px #0003, 2px 5px 15px #0001;
+
+  transition: all ease 1000ms;
+}
+
+.chartTitle {
+  padding: 0.5rem 2rem 0.5rem 0.75rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  font-size: var(--font2);
+}
+
+.chartTitle div:first-child {
+  padding-right: 2rem;
+}
+
+.typeChart {
+  width: 100%;
+  padding: 0.75rem 2rem 0.75rem 0.75rem;
+
+  font-size: var(--font1);
+}
+
+.typeChart:not(.TD) {
+  border-top: 1px solid rgba(128, 128, 128);
+}
+
+.experimentalChart {
+  width: 80vw;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.TD {
+  width: 100%;
+
+  border-top: 1px solid rgba(128, 128, 128);
+  font-size: var(--font1);
+  font-weight: 300;
+}
+
+.THeader:nth-child(even) {
+  border-right: 1px solid rgba(128, 128, 128);
+  border-left: 1px solid rgba(128, 128, 128);
+}
+
+.TD:last-child:nth-child(odd) {
+  border-bottom: 1px solid rgba(128, 128, 128);
+}
+
+.chartHide {
+  display: none;
+  transition: all 1000ms ease;
+}
+
+.this {
+  background-color: red;
+}
