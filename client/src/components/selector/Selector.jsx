@@ -1,12 +1,13 @@
 import { useState } from "react";
 import ArtistGrid from "../artistGrid/ArtistGrid.jsx";
 import { useGetAllArtistsQuery } from "../../services/ArtistsAPI.jsx";
+import { useGetAllAlbumsQuery } from "../../services/AlbumAPI.jsx";
 import { useGetAllSongsQuery } from "../../services/SongAPI.jsx";
 import "./Selector.css";
 
 export default function Selector() {
   const [selector, setSelector] = useState(true);
-  const [chart, setChart] = useState({ TYPE: "", GENRE: "", TIME: "" });
+  const [chart, setChart] = useState({ TYPE: "SONGS", GENRE: "ALL GENRES", TIME: "TODAY" });
   const [typeIndex, setTypeIndex] = useState(0);
   const [genreIndex, setGenreIndex] = useState(0);
   const [timeIndex, setTimeIndex] = useState(0);
@@ -23,13 +24,11 @@ export default function Selector() {
   if (chart.TIME === "Day") chart.TIME = "TODAY";
   if (chart.TIME === "Week") chart.TIME = "THIS WEEK";
   if (chart.TIME === "Month") chart.TIME = "THIS MONTH";
-  let a = type[typeIndex];
 
   const { data: Artists, isSuccess: ArtistsSuccess } = useGetAllArtistsQuery();
-
   const { data: Songs, isSuccess: SongsSuccess } = useGetAllSongsQuery();
+  const { data: Album, isSuccess: AlbumSuccess } = useGetAllAlbumsQuery();
 
-  console.log(a);
   return (
     <>
       <section className="chartSection">
@@ -87,8 +86,9 @@ export default function Selector() {
       </section>
 
       <section>
-        {a === "Songs" && JSON.stringify(Songs?.map((i) => i.title))}
-        {a === "Artists" && JSON.stringify(Artists?.map((i) => i.title))}
+        {type[typeIndex] === "Songs" && JSON.stringify(Songs?.map((i) => i.title))}
+        {type[typeIndex] === "Artists" && JSON.stringify(Artists?.map((i) => i.title))}
+        {type[typeIndex] === "Albums" && JSON.stringify(Album?.map((i) => i.title))}
 
         {/* {artistSuccess &&
           Artists.map((i, index) => {

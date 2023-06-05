@@ -36,7 +36,6 @@ const addNewAlbum = asyncHandler(async (req, res) => {
     id: v4(),
     title: capitalizeFirstLetter(title),
     artist,
-    // artist: [...artist],
     released,
     lyrics,
     viewCount: 0,

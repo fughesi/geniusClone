@@ -14,6 +14,7 @@ import { usersApi } from "./services/UsersAPI.jsx";
 import { newsApi } from "./services/NewsAPI.jsx";
 import { songsApi } from "./services/SongAPI.jsx";
 import { artistApi } from "./services/ArtistsAPI.jsx";
+import { albumApi } from "./services/AlbumAPI.jsx";
 import { practiceApi } from "./services/practiceAPI.jsx";
 
 const store = configureStore({
@@ -23,12 +24,14 @@ const store = configureStore({
     [usersApi.reducerPath]: usersApi.reducer,
     [newsApi.reducerPath]: newsApi.reducer,
     [songsApi.reducerPath]: songsApi.reducer,
+    [albumApi.reducerPath]: albumApi.reducer,
     [artistApi.reducerPath]: artistApi.reducer,
     [practiceApi.reducerPath]: practiceApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(
       usersApi.middleware,
+      albumApi.middleware,
       artistApi.middleware,
       newsApi.middleware,
       songsApi.middleware,
