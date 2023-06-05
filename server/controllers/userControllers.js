@@ -51,8 +51,6 @@ const createNewUser = asyncHandler(async (req, res) => {
   const { username, firstName, lastName, age, phone, email, password, shippingAddress, billingAddress, homeAddress } =
     req.body;
 
-  console.log(req.files);
-
   const emailUnavailable = await Users.findOne({ email: email.toLowerCase() }).exec();
   const usernameUnavailable = await Users.findOne({ username }).exec();
 

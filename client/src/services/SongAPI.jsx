@@ -4,13 +4,13 @@ export const songsApi = createApi({
   reducerPath: "songsApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5200/api/songs",
-    prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
-      if (token) {
-        headers.set("authorization" || "Authorization", `Bearer ${token}`);
-      }
-      return headers;
-    },
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = getState().auth.token;
+    //   if (token) {
+    //     headers.set("authorization" || "Authorization", `Bearer ${token}`);
+    //   }
+    //   return headers;
+    // },
   }),
   tagTypes: ["Songs", "Post"],
   endpoints: (builder) => ({
@@ -23,3 +23,5 @@ export const songsApi = createApi({
     }),
   }),
 });
+
+export const { useGetAllSongsQuery } = songsApi;

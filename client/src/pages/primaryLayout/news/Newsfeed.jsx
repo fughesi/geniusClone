@@ -70,7 +70,7 @@ export default function News() {
       <Selector />
 
       <section className="artistGridSection">
-        {artistSuccess &&
+        {/* {artistSuccess &&
           artists.map((i, index) => {
             return (
               <ArtistGrid
@@ -83,7 +83,7 @@ export default function News() {
                 photoAlt={i.photoAlt}
               />
             );
-          })}
+          })} */}
       </section>
     </main>
   );

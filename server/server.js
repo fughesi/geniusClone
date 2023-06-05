@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const dbConnect = require("./config/dbConnect");
 
 const songRoutes = require("./routes/songRoutes");
+const albumRoutes = require("./routes/albumRoutes");
 const userRoutes = require("./routes/userRoutes");
 const artistRoutes = require("./routes/artistRoutes");
 const newsRoutes = require("./routes/newsRoutes");
@@ -34,6 +35,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use("/api/users", userRoutes);
 app.use("/api/news", newsRoutes);
 app.use("/api/songs", songRoutes);
+app.use("/api/albums", albumRoutes);
 app.use("/api/artists", artistRoutes);
 app.use("/", serverRoutes);
 app.get("*", (req, res) => {

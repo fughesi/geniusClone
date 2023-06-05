@@ -54,7 +54,6 @@ const NewsValidation = Joi.object({
   article: Joi.string().min(50).required(),
   author: Joi.string().required(),
   date: Joi.string().required(),
-  // photo: Joi.string(),
   photo: Joi.binary(),
   photoAlt: Joi.string(),
   categories: Joi.array(),
@@ -114,6 +113,18 @@ const AuthorValidation = Joi.object({
   articles: Joi.array().items(Joi.string()),
 });
 
+// ============== ALBUM
+const AlbumValidation = Joi.object({
+  id: Joi.string(),
+  artist: Joi.string(),
+  songs: Joi.string(),
+  title: Joi.string(),
+  released: Joi.string(),
+  lyrics: Joi.boolean(),
+  viewCount: Joi.number(),
+  genres: Joi.string(),
+});
+
 // ============== FORUM
 const ForumValidation = Joi.object({
   id: Joi.string(),
@@ -135,4 +146,5 @@ module.exports = {
   ForumValidation,
   MerchValidation,
   SongValidation,
+  AlbumValidation,
 };
